@@ -728,6 +728,13 @@
     ]
   },
   {
+    "objectID": "docs/knowledge-lake/symbolic-computation/styles/my-latex.html",
+    "href": "docs/knowledge-lake/symbolic-computation/styles/my-latex.html",
+    "title": "Python in Physics",
+    "section": "",
+    "text": "\\[\n\\usepackage{booktabs}\n\\usepackage{xparse}\n\\]\n\n\\[\n\\NewDocumentCommand{\\dd}{m}{\\,\\mathrm{d}#1}\n\\]\n\n\\[\n% \\newcommand\\v[1]{\\vec{#1}}\n\\newcommand\\v[1]{\\mathbf{#1}}\n\\newcommand\\vdot[2]{\\vec{#1}\\cdot\\vec{#2}}\n\\]\n\n\\[\n\\newcommand\\f[2]{\\dfrac{#1}{#2}}\n\\newcommand\\da[2]{\\dfrac{d #1}{d #2}}\n\\newcommand\\daa[2]{\\dfrac{d^2 #1}{d #2^2}}\n\\newcommand\\pa[2]{\\dfrac{\\partial #1}{\\partial #2}}\n\\newcommand\\pal[3]{\\left.\\dfrac{\\partial #1}{\\partial #2}\\right|_{#3}}\n\\newcommand\\paa[2]{\\dfrac{\\partial^2 #1}{\\partial #2^2}}\n\\newcommand\\pab[3]{\\dfrac{\\partial^2 #1}{\\partial #2 \\partial #3}}\n\\def\\half{\\frac{1}{2}}\n\\]\n\n\\[\n\\newcommand\\ket[1]{\\left|#1\\right\\rangle}            % |x&gt;\n\\newcommand\\exp[1]{\\left\\langle#1\\right\\rangle}            % &lt;x&gt;\n\\newcommand\\ex[1]{\\left\\langle#1\\right\\rangle}            % &lt;x&gt;\n\\newcommand\\lr[1]{\\left(#1\\right)}              % (x)\n\\newcommand\\lrs[1]{\\left[#1\\right]}             % [x]\n%\\newcommand\\lrb[1]{\\left|#1\\right|}             % |x|\n\\newcommand\\lra[1]{\\left|#1\\right|}             % |x|\n\\newcommand\\lrc[1]{\\left\\{#1\\right\\}}           % {x}\n\\newcommand\\lrl[3]{\\left.#1\\right|_{#2}^{#3}}   % x_limits\n\\]\n\n\\[\n\\def\\ie{\\text{i.e.}\\quad}\n\\]\n\n\n$$\n% Typical reaction\n% Nuclear reactions\n$$\n\n\\[\n\\newcommand{\\coulomb}[1]{\\dfrac{#1}{4\\pi\\epsilon_0}}\n\\]\n\n\\[\n\\def\\amu{\\text{ amu}}\n\\def\\J{\\text{ J}}\n\\def\\K{\\text{ K}}\n\\def\\s{\\text{ s}}\n\\def\\second{\\text{ s}}\n\\def\\Psecond{\\text{ s}^{-1}}\n\\def\\m{\\text{ m}}\n\\def\\mm{\\text{ mm}}\n\\def\\km{\\text{ km}}\n\\def\\fm{\\text{ fm}}\n\\def\\mum{\\text{ $\\mu$m}}\n\\def\\mus{\\text{ $\\mu$s}}\n\\def\\mPERs{\\text{ ms$^{-1}$}}\n\\def\\eV{\\text{ eV}}\n\\def\\keV{\\text{ keV}}\n\\def\\GeV{\\text{ GeV}}\n\\def\\MeV{\\text{ MeV}}\n\\def\\MeVc{\\text{ MeV/c$^2$}}\n\\def\\KeVc{\\text{ KeV/c$^2$}}\n\\newcommand\\ttp[1]{\\times 10^{#1}} % To The Power\n\\]\n\n$$ \n$$\n\n\\[\n\\def\\uraniumA{_{92}^{233}{\\text{U}}_{}}\n\\def\\uraniumB{_{92}^{235}{\\text{U}}_{}}\n\\def\\uraniumC{_{92}^{238}{\\text{U}}_{}}\n\\def\\carbonB{_{6}^{14}{\\text{C}}_{}}\n\\def\\nitrogenB{_{7}^{14}{\\text{N}}_{}}\n\\def\\oxygenA{_{8}^{14}{\\text{O}}_{}}\n\\def\\oxygenB{_{8}^{16}{\\text{O}}_{}}\n\\]\n\\[\n\\def\\com{\\text{\\scriptsize CM}}\n\\]\n\n\\[\n\\def\\l{\\ell}\n\\def\\l{l}\n\\]\n\n\\[\n\\def\\g{\\gamma}\n\\def\\g{\\gamma}\n\\]\n\n\n\n\n Back to top"
+  },
+  {
     "objectID": "docs/knowledge-lake/random_numbers/need/1_random_need.html#a-simple-graphical-test",
     "href": "docs/knowledge-lake/random_numbers/need/1_random_need.html#a-simple-graphical-test",
     "title": "Random Numbers (Need)",
@@ -4098,6 +4105,136 @@
       "Random Numbers",
       "1. Introduction",
       "Random Numbers (Good)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "",
+    "text": "library(reticulate)\nuse_python(\"/Users/chammika/miniconda3/envs/science-work/bin/python\", required = TRUE)",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#install-and-import",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#install-and-import",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "2.1 Install and Import",
+    "text": "2.1 Install and Import\nYou can install SymPy in the usual way (e.g. with pip or conda) and then import it as follows:\n\nimport sympy as sp",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#pretty-printing",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#pretty-printing",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "2.2 Pretty Printing",
+    "text": "2.2 Pretty Printing\nThe following is optional but I strongly recommend you do, so that things look nice.\n\nJupyterGoogle Colab\n\n\nsp.init_printing()\n\n\nI got the following from this Stackoverflow discussion.\ndef _colab_latex_printer(exp, **options):\n    # Lightweight helper for Colab's MathJax\n    from google.colab.output._publish import javascript  # type: ignore\n    url = \"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=default\"\n    javascript(url=url)\n    return sp.printing.latex(exp, **options)\n\nsp.init_printing(use_latex=\"mathjax\", latex_printer=_colab_latex_printer)",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#declaring-symbols",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#declaring-symbols",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "3.1 Declaring Symbols",
+    "text": "3.1 Declaring Symbols\nBefore you can use variables in SymPy, you need to declare them as symbols. This step only needs to be done once per session.\n\nx, y, z = sp.symbols('x y z')\n\nDeclaring symbols gives you full control over how they behave mathematically and how they are displayed. For example, you can specify whether a symbol should be real, positive, or an integer.\nx = sp.symbols('x', real=True, positive=True)\na, b, c = sp.symbols('a b c', real=True, positive=True)",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#expansion",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#expansion",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "3.2 Expansion",
+    "text": "3.2 Expansion\nsp.expand((x + y + z)**3)\n\\[x^{3} + 3 x^{2} y + 3 x^{2} z + 3 x y^{2} + 6 x y z + 3 x z^{2} + y^{3} + 3 y^{2} z + 3 y z^{2} + z^{3}\\]",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#square-roots-and-radicals",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#square-roots-and-radicals",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "3.3 Square roots and radicals",
+    "text": "3.3 Square roots and radicals\nshow(sp.sqrt(8*x + 4*y + 2*z))\n\\[\\sqrt{8 x + 4 y + 2 z}\\]",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#substitution",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#substitution",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "3.4 Substitution",
+    "text": "3.4 Substitution\nhahaha = sp.symbols('hahaha')\n(sp.cos(x)).subs(x, hahaha)\n\\[\\cos{\\left(hahaha \\right)}\\]",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#simplification",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#simplification",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "3.5 Simplification",
+    "text": "3.5 Simplification\n\nsp.simplify(sp.sin(x)**2 + sp.cos(x)**2)\n\n1",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#differentiation",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#differentiation",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "5.1 Differentiation",
+    "text": "5.1 Differentiation\nsp.diff(x**4, x)\n\\[4x^{3}\\]\nDifferentiate multiple times:\nsp.diff(x**4, x, 3)\n\\[24x\\]\n\nPartial derivatives\nsp.diff(x*y*sp.sin(x), x)  # ∂/∂x\n\\[xy\\cos(x) + y\\sin(x)\\]\nsp.diff(x*y*sp.sin(x), y)  # ∂/∂y\n\\[x\\sin(x)\\]",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
+    ]
+  },
+  {
+    "objectID": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#integration",
+    "href": "docs/knowledge-lake/symbolic-computation/1_sympy_need.html#integration",
+    "title": "Symbolic Mathematics (Need)",
+    "section": "5.2 Integration",
+    "text": "5.2 Integration\n\nIndefinite integrals\nsp.integrate(a*sp.exp(-(x-b)**2/c**2), x)\n\\[\\frac{ac}{2}\\sqrt{\\pi}\\,\\operatorname{erf}\\!\\left(\\frac{x-b}{c}\\right).\\]\n\n\nDefinite integrals\nshow(sp.integrate(a*sp.exp(-(x-b)**2/c**2), (x, -1, 1)))\n\\[\\frac{\\sqrt{\\pi} a c \\operatorname{erf}{\\left(\\frac{1 - b}{c} \\right)}}{2} - \\frac{\\sqrt{\\pi} a c \\operatorname{erf}{\\left(\\frac{- b - 1}{c} \\right)}}{2}\\]\nshow(sp.integrate(sp.exp(-x**2 - y**2), (x, -sp.oo, sp.oo), (y, -sp.oo, sp.oo)))\n\\[\\pi,\\]\nThe latter equals \\(\\pi\\) as expected for the Gaussian integral in two dimensions.\n\n\nLeave integrals unevaluated\nsp.Integral(sp.exp(-x**2 - y**2), (x, -sp.oo, sp.oo), (y, -sp.oo, sp.oo))\n\\[\\int_{-\\infty}^{\\infty}\\int_{-\\infty}^{\\infty} e^{-x^{2}-y^{2}}\\,dx\\,dy.\\]",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "Symbolic Mathematics",
+      "Symbolic Mathematics (Need)"
     ]
   },
   {
