@@ -2381,6 +2381,41 @@
     ]
   },
   {
+    "objectID": "docs/problems/grid-laplace.html",
+    "href": "docs/problems/grid-laplace.html",
+    "title": "12| Monte Carlo Integration",
+    "section": "",
+    "text": "Introduction\nEvaluating integrals is necessary for most scientific modelling. So, many different integration methods have been developed. The Monte Carlo(MC) integration method is one of the most versatile. One of its charms is its ability to be scaled up to higher dimensions without much fuss. In this question, you will develop code to realise Monte Carlo integration.\n\n\nTasks\n\nTask 1Task 2Some theoryTask 3\n\n\n\nArea first\n\nThe image shows a plot of the function \\(f(x)=x^2\\sin^2(2x)\\). Let’s try to estimate the area of the region shaded in blue.\nHere is what you should do:\n\nGenerate \\((x,y)\\) coordinates for a large number (\\(n_\\text{all}\\)) of random points to evenly cover the area shaded in grey.\n\nAs you can see, this region is defined by \\(2 \\le x \\le 3\\) and \\(0 \\le y\\le 6\\).\nConsider using uniform() for this.\n\nAsk how many points you generated are below the curve (and therefore in the blue region). Let’s call this number \\(n_\\text{below}\\).\n\nNotice that all random points in the blue region satisfy \\(y_i \\leq f(x_i)\\)\n\nNow we can calculate the area of the blue region because: \\[\n  \\dfrac{\\text{Blue Area}}{\\text{Grey Area}} \\approx \\dfrac{n_\\text{below}}{n_\\text{all}}\\Rightarrow \\text{Blue Area}=\\dfrac{n_\\text{below}}{n_\\text{all}}\\times\\text{Grey Area}\n  \\]\n\n\n\n\n\nIntegration\nSince you now know the blue area, you also know the value of the following integral \\(\\displaystyle\\int_{x=2}^{x=3}f(x)dx\\)! So what you have done in this exercise is develop a numerical technique for evaluating integrals.\n\nCheck how good your estimate is by comparing it to the actual value of the integral, which is \\(4.0647\\). (I used Wolfram Alpha).\nCheck if your accuracy improves by increasing \\(n_\\text{all}\\).\n\n\n\n\n\nA Monte Carlo Estimator\n\\[\n\\newcommand\\ex[1]{\\left\\langle #1 \\right\\rangle}\n\\]\nThere is another way! Let’s play with some maths to see how.\nConsider a function \\(f(x)\\) that we want to integrate over \\([a,b]\\). If \\(\\ex{f(x)}\\) is the expectation value of \\(f(x)\\) over \\([a,b]\\), it follows that:\n\\[\n\\ex{f(x)}= \\dfrac{1}{b-a}\\int_a^bf(x)dx\n\\] But, \\[\n\\ex{f(x)}\\approx \\dfrac{1}{N}\\sum_{i=0}^{N-1}f(X_i)\n\\] Where \\(X_i\\) are \\(N\\) points in the interval \\([a,b]\\).\nWhence, for \\(X_i\\) drawn uniformly,\n\\[\n\\begin{equation}\n\\int_a^bf(x)dx \\approx (b-a)\\dfrac{1}{N}\\sum_{i=0}^{N-1}f(X_i)\n\\end{equation}\n\\]\nThe term on the right-hand side is called a Monte Carlo estimator. Notice that the Law of Large Numbers tells us that this approximation improves with large values of \\(N\\)\n\n\n\n\nUsing an estimator\nEvaluate the following integral using an MC estimator based on a Uniform probability distribution.\n\\[\n\\int_{x=2}^{x=3} x^2\\sin^2(2x)\\,dx\n\\]\n\nCompare your answer with your previous MC algorithm.\nCompare the speed of the two algorithms.\n\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "docs/classes/classes_02.html",
+    "href": "docs/classes/classes_02.html",
+    "title": "Classes 2",
+    "section": "",
+    "text": "library(reticulate)\nuse_python(\"/Users/chammika/miniconda3/envs/quarto/bin/python3\")\n\n\n\n\n1 Cleaning up with Loops\nIn my previous discussion on classes, I introduced a class called CParticle1D. I also mentioned how inefficient some of the code was. Now that we know loops, I can quickly clean up my code. Here is a comparison.\n\nBefore (No Loops)Now (With Loops)\n\n\n\n\n\n\nclass CParticle1D:\n    mass = None\n    position = None\n    radius = None\n\n\n# Make all the particles identical\nCParticle1D.mass = 99\nCParticle1D.radius = .01\n\n# Create a list of particles\nall_particles = [CParticle1D()]\nall_particles += [CParticle1D()]\nall_particles += [CParticle1D()]\n\n# Initialise with a random position\ni = 0\nall_particles[i].position = np.random.rand()\n\ni += 1\nall_particles[i].position = np.random.rand()\n\ni += 1\nall_particles[i].position = np.random.rand()\n\n\ni = 0\nprint(f'Particle {i}: mass={all_particles[i].mass}, position= {all_particles[i].position:.3f}.')\n## Particle 0: mass=99, position= 0.715.\ni += 1\nprint(f'Particle {i}: mass={all_particles[i].mass}, position= {all_particles[i].position:.3f}.')\n## Particle 1: mass=99, position= 0.885.\ni += 1\nprint(f'Particle {i}: mass={all_particles[i].mass}, position= {all_particles[i].position:.3f}.')\n## Particle 2: mass=99, position= 0.469.\n\n\n\n\n\n\n\nclass CParticle1D:\n    mass = None\n    position = None\n    radius = None\n\n\n# Make all the particles identical\nCParticle1D.mass = 99\nCParticle1D.radius = .01\n\n# Create a list of particles\nno_of_particles = 3\nall_particles = [CParticle1D() for _ in range(no_of_particles)]\n\n# Initialise with a random position\nfor particle in all_particles:\n    particle.position = np.random.rand()\n\n# Print stuff to check\nfor count, particle in enumerate(all_particles):\n    print(f'Particle {count}: mass={particle.mass}, position= {particle.position:.3f}.')\n\nParticle 0: mass=99, position= 0.715.\nParticle 1: mass=99, position= 0.885.\nParticle 2: mass=99, position= 0.469.\n\n\n\n\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Content",
+      "<strong>Day 1</strong>",
+      "(C) Python (Basics+)",
+      "3. OOPS",
+      "Classes 2"
+    ]
+  },
+  {
+    "objectID": "docs/classes/classes_03.html",
+    "href": "docs/classes/classes_03.html",
+    "title": "Classes 3",
+    "section": "",
+    "text": "library(reticulate)\nuse_python(\"/Users/chammika/miniconda3/envs/quarto/bin/python3\")\n\n\n\n\n1 __init()__ Method\nA better way to setup your class is by including an __init()__ method that will be called whenever you create an instance. This way you can update or add features that apply only to the instance.\n\nclass CParticle1D:\n    # Class variables\n    mass=None\n    position=None\n    radius=None\n\n    def __init__(self, position) -&gt; None:\n        # Object variables\n        self.position = position\n        pass\n\nThings can get a bit confusing here because there is a distinction between class and object variables. - mass, position and radius are class variables. There is another variable position that belongs only to the object. - When you want to access the object variable position use self.position. There are also variables mass and radius avaialbe to the object. If you change these (e.g. self.mass=10) then the class variable and object variables will have different values.\n\n\n2 Methods\nYou can also create functions (technically called methods) that operate on your objects.\nIn the code below I have included a method called move().\n\nclass CParticle1D:\n    # Class variables\n    mass = None\n    position = None\n    radius = None\n\n    def __init__(self, position) -&gt; None:\n        # Object variables\n        self.position = position\n        pass\n\n    def move(self, displacement):\n        self.position += displacement\n\nYou use move() like:\n\nparticle = CParticle1D(position=10)\nparticle.move(3)\nprint(f'{particle.position=}')\n\nparticle.position=13\n\n\nPlease note that the definition of move() must contain self. This will be automatically supplied by Python when you call the method.\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Content",
+      "<strong>Day 1</strong>",
+      "(C) Python (Basics+)",
+      "3. OOPS",
+      "Classes 3"
+    ]
+  },
+  {
     "objectID": "docs/classes/classes_01.html",
     "href": "docs/classes/classes_01.html",
     "title": "Classes 1",
@@ -2451,39 +2486,56 @@
     ]
   },
   {
-    "objectID": "docs/classes/classes_03.html",
-    "href": "docs/classes/classes_03.html",
-    "title": "Classes 3",
+    "objectID": "docs/problems/h2-plus.html",
+    "href": "docs/problems/h2-plus.html",
+    "title": "H\\(_2^+\\) Molecule",
     "section": "",
-    "text": "library(reticulate)\nuse_python(\"/Users/chammika/miniconda3/envs/quarto/bin/python3\")\n\n\n\n\n1 __init()__ Method\nA better way to setup your class is by including an __init()__ method that will be called whenever you create an instance. This way you can update or add features that apply only to the instance.\n\nclass CParticle1D:\n    # Class variables\n    mass=None\n    position=None\n    radius=None\n\n    def __init__(self, position) -&gt; None:\n        # Object variables\n        self.position = position\n        pass\n\nThings can get a bit confusing here because there is a distinction between class and object variables. - mass, position and radius are class variables. There is another variable position that belongs only to the object. - When you want to access the object variable position use self.position. There are also variables mass and radius avaialbe to the object. If you change these (e.g. self.mass=10) then the class variable and object variables will have different values.\n\n\n2 Methods\nYou can also create functions (technically called methods) that operate on your objects.\nIn the code below I have included a method called move().\n\nclass CParticle1D:\n    # Class variables\n    mass = None\n    position = None\n    radius = None\n\n    def __init__(self, position) -&gt; None:\n        # Object variables\n        self.position = position\n        pass\n\n    def move(self, displacement):\n        self.position += displacement\n\nYou use move() like:\n\nparticle = CParticle1D(position=10)\nparticle.move(3)\nprint(f'{particle.position=}')\n\nparticle.position=13\n\n\nPlease note that the definition of move() must contain self. This will be automatically supplied by Python when you call the method.\n\n\n\n\n Back to top",
+    "text": "Note\n\n\n\nThe Variational Principle states that for any trial function \\(f\\) that satisfies the relevant boundary conditions,\n\\[\nw \\geq E_1,\n\\]\nwhere \\(E_1\\) is the ground-state energy of the system and\n\\[\nw =\n\\frac{\n\\displaystyle \\int f^* \\hat{H} f\\,d\\tau\n}{\n\\displaystyle \\int f^* f\\,d\\tau\n}.\n\\]\n\n\n\n\n\nFor the particle-in-a-box system:\n\nWrite down the Hamiltonian operator, \\(\\hat{H}\\).\nApply the variational principle to obtain an upper bound for the lowest energy state, \\(E_1\\).\nCompare your estimate with the actual value.",
     "crumbs": [
       "Content",
-      "<strong>Day 1</strong>",
-      "(C) Python (Basics+)",
-      "3. OOPS",
-      "Classes 3"
+      "<strong>Additional Material</strong>",
+      "More Problems",
+      "H$_2^+$ Molecule"
     ]
   },
   {
-    "objectID": "docs/classes/classes_02.html",
-    "href": "docs/classes/classes_02.html",
-    "title": "Classes 2",
+    "objectID": "docs/problems/h2-plus.html#variational-principle-and-the-particle-in-a-box",
+    "href": "docs/problems/h2-plus.html#variational-principle-and-the-particle-in-a-box",
+    "title": "H\\(_2^+\\) Molecule",
     "section": "",
-    "text": "library(reticulate)\nuse_python(\"/Users/chammika/miniconda3/envs/quarto/bin/python3\")\n\n\n\n\n1 Cleaning up with Loops\nIn my previous discussion on classes, I introduced a class called CParticle1D. I also mentioned how inefficient some of the code was. Now that we know loops, I can quickly clean up my code. Here is a comparison.\n\nBefore (No Loops)Now (With Loops)\n\n\n\n\n\n\nclass CParticle1D:\n    mass = None\n    position = None\n    radius = None\n\n\n# Make all the particles identical\nCParticle1D.mass = 99\nCParticle1D.radius = .01\n\n# Create a list of particles\nall_particles = [CParticle1D()]\nall_particles += [CParticle1D()]\nall_particles += [CParticle1D()]\n\n# Initialise with a random position\ni = 0\nall_particles[i].position = np.random.rand()\n\ni += 1\nall_particles[i].position = np.random.rand()\n\ni += 1\nall_particles[i].position = np.random.rand()\n\n\ni = 0\nprint(f'Particle {i}: mass={all_particles[i].mass}, position= {all_particles[i].position:.3f}.')\n## Particle 0: mass=99, position= 0.715.\ni += 1\nprint(f'Particle {i}: mass={all_particles[i].mass}, position= {all_particles[i].position:.3f}.')\n## Particle 1: mass=99, position= 0.885.\ni += 1\nprint(f'Particle {i}: mass={all_particles[i].mass}, position= {all_particles[i].position:.3f}.')\n## Particle 2: mass=99, position= 0.469.\n\n\n\n\n\n\n\nclass CParticle1D:\n    mass = None\n    position = None\n    radius = None\n\n\n# Make all the particles identical\nCParticle1D.mass = 99\nCParticle1D.radius = .01\n\n# Create a list of particles\nno_of_particles = 3\nall_particles = [CParticle1D() for _ in range(no_of_particles)]\n\n# Initialise with a random position\nfor particle in all_particles:\n    particle.position = np.random.rand()\n\n# Print stuff to check\nfor count, particle in enumerate(all_particles):\n    print(f'Particle {count}: mass={particle.mass}, position= {particle.position:.3f}.')\n\nParticle 0: mass=99, position= 0.715.\nParticle 1: mass=99, position= 0.885.\nParticle 2: mass=99, position= 0.469.\n\n\n\n\n\n\n\n\n\n Back to top",
+    "text": "For the particle-in-a-box system:\n\nWrite down the Hamiltonian operator, \\(\\hat{H}\\).\nApply the variational principle to obtain an upper bound for the lowest energy state, \\(E_1\\).\nCompare your estimate with the actual value.",
     "crumbs": [
       "Content",
-      "<strong>Day 1</strong>",
-      "(C) Python (Basics+)",
-      "3. OOPS",
-      "Classes 2"
+      "<strong>Additional Material</strong>",
+      "More Problems",
+      "H$_2^+$ Molecule"
     ]
   },
   {
-    "objectID": "docs/problems/grid-laplace.html",
-    "href": "docs/problems/grid-laplace.html",
-    "title": "12| Monte Carlo Integration",
-    "section": "",
-    "text": "Introduction\nEvaluating integrals is necessary for most scientific modelling. So, many different integration methods have been developed. The Monte Carlo(MC) integration method is one of the most versatile. One of its charms is its ability to be scaled up to higher dimensions without much fuss. In this question, you will develop code to realise Monte Carlo integration.\n\n\nTasks\n\nTask 1Task 2Some theoryTask 3\n\n\n\nArea first\n\nThe image shows a plot of the function \\(f(x)=x^2\\sin^2(2x)\\). Let’s try to estimate the area of the region shaded in blue.\nHere is what you should do:\n\nGenerate \\((x,y)\\) coordinates for a large number (\\(n_\\text{all}\\)) of random points to evenly cover the area shaded in grey.\n\nAs you can see, this region is defined by \\(2 \\le x \\le 3\\) and \\(0 \\le y\\le 6\\).\nConsider using uniform() for this.\n\nAsk how many points you generated are below the curve (and therefore in the blue region). Let’s call this number \\(n_\\text{below}\\).\n\nNotice that all random points in the blue region satisfy \\(y_i \\leq f(x_i)\\)\n\nNow we can calculate the area of the blue region because: \\[\n  \\dfrac{\\text{Blue Area}}{\\text{Grey Area}} \\approx \\dfrac{n_\\text{below}}{n_\\text{all}}\\Rightarrow \\text{Blue Area}=\\dfrac{n_\\text{below}}{n_\\text{all}}\\times\\text{Grey Area}\n  \\]\n\n\n\n\n\nIntegration\nSince you now know the blue area, you also know the value of the following integral \\(\\displaystyle\\int_{x=2}^{x=3}f(x)dx\\)! So what you have done in this exercise is develop a numerical technique for evaluating integrals.\n\nCheck how good your estimate is by comparing it to the actual value of the integral, which is \\(4.0647\\). (I used Wolfram Alpha).\nCheck if your accuracy improves by increasing \\(n_\\text{all}\\).\n\n\n\n\n\nA Monte Carlo Estimator\n\\[\n\\newcommand\\ex[1]{\\left\\langle #1 \\right\\rangle}\n\\]\nThere is another way! Let’s play with some maths to see how.\nConsider a function \\(f(x)\\) that we want to integrate over \\([a,b]\\). If \\(\\ex{f(x)}\\) is the expectation value of \\(f(x)\\) over \\([a,b]\\), it follows that:\n\\[\n\\ex{f(x)}= \\dfrac{1}{b-a}\\int_a^bf(x)dx\n\\] But, \\[\n\\ex{f(x)}\\approx \\dfrac{1}{N}\\sum_{i=0}^{N-1}f(X_i)\n\\] Where \\(X_i\\) are \\(N\\) points in the interval \\([a,b]\\).\nWhence, for \\(X_i\\) drawn uniformly,\n\\[\n\\begin{equation}\n\\int_a^bf(x)dx \\approx (b-a)\\dfrac{1}{N}\\sum_{i=0}^{N-1}f(X_i)\n\\end{equation}\n\\]\nThe term on the right-hand side is called a Monte Carlo estimator. Notice that the Law of Large Numbers tells us that this approximation improves with large values of \\(N\\)\n\n\n\n\nUsing an estimator\nEvaluate the following integral using an MC estimator based on a Uniform probability distribution.\n\\[\n\\int_{x=2}^{x=3} x^2\\sin^2(2x)\\,dx\n\\]\n\nCompare your answer with your previous MC algorithm.\nCompare the speed of the two algorithms.\n\n\n\n\n\n\n\n\n\n Back to top"
+    "objectID": "docs/problems/h2-plus.html#some-basics",
+    "href": "docs/problems/h2-plus.html#some-basics",
+    "title": "H\\(_2^+\\) Molecule",
+    "section": "4.1 Some Basics",
+    "text": "4.1 Some Basics\n\nWrite down the potential energy of the electron due to the charges \\(Q_1\\) and \\(Q_2\\) in SI units and in atomic units.\n\n\n\\[\n   \\begin{array}{c|cc}\n   & V_1 & V_2 \\\\\n   \\hline\n   \\text{SI}\n   &\n   -\\dfrac{1}{4\\pi\\epsilon_0}\\dfrac{Q_1e^2}{r_1}\n   &\n   -\\dfrac{1}{4\\pi\\epsilon_0}\\dfrac{Q_2e^2}{r_2}\n   \\\\[1em]\n   \\text{a.u.}\n   &\n   -\\dfrac{Q_1}{r_1}\n   &\n   -\\dfrac{Q_2}{r_2}\n   \\end{array}\n   \\]\n\n\nExpress the lengths \\(r_1\\) and \\(r_2\\) in terms of \\(r\\) and \\(R\\).\n\n\n\\[\n   r_1\n   =\n   \\sqrt{\n   r^2+\\left(\\frac{R}{2}\\right)^2\n   -\n   rR\\cos\\theta\n   },\n   \\]\n\\[\n   r_2\n   =\n   \\sqrt{\n   r^2+\\left(\\frac{R}{2}\\right)^2\n   +\n   rR\\cos\\theta\n   }.\n   \\]\n\n\nWrite down the Hamiltonian for the two-ion, single-electron system in SI units and in atomic units.\n\n\n\\[\n   \\hat{H}_{\\text{SI}}\n   =\n   -\\frac{\\hbar^2}{2m_e}\\nabla^2\n   -\n   \\frac{e^2}{4\\pi\\epsilon_0}\n   \\left(\n   \\frac{Q_1}{r_1}\n   +\n   \\frac{Q_2}{r_2}\n   \\right),\n   \\]\n\\[\n   \\hat{H}_{\\text{a.u.}}\n   =\n   -\\frac{1}{2}\\nabla^2\n   -\n   \\left(\n   \\frac{Q_1}{r_1}\n   +\n   \\frac{Q_2}{r_2}\n   \\right).\n   \\]\n\n\nWrite down the wave function of the lowest energy level of the hydrogen atom in SI units and in atomic units.\n\n\n\\[\n   \\psi(r,\\theta,\\phi)\n   =\n   \\frac{1}{\\sqrt{\\pi a_0^3}}e^{-r/a_0}\n   \\qquad\n   \\text{SI},\n   \\]\n\\[\n   \\psi(r,\\theta,\\phi)\n   =\n   \\frac{1}{\\sqrt{\\pi}}e^{-r}\n   \\qquad\n   \\text{a.u.}\n   \\]\n\n\nThis function changes if the hydrogen atom is not at the origin of the coordinate system. Modify the previous result if the hydrogen atom is centred at\n\n\\[\n\\left(\\frac{R}{2},0,0\\right)\n\\qquad\n\\text{or}\n\\qquad\n\\left(-\\frac{R}{2},0,0\\right).\n\\]\nFrom now on, use only atomic units\n\nFor \\(Q_1\\):\n\\[\n   \\chi_1\n   =\n   \\frac{1}{\\sqrt{\\pi a^3}}\n   e^{-r_1/a},\n   \\]\nwhere\n\\[\n   r_1\n   =\n   \\sqrt{\n   r^2+\\left(\\frac{R}{2}\\right)^2\n   -\n   rR\\cos\\theta\n   }.\n   \\]\nFor \\(Q_2\\):\n\\[\n   \\chi_2\n   =\n   \\frac{1}{\\sqrt{\\pi a^3}}\n   e^{-r_2/a},\n   \\]\nwhere\n\\[\n   r_2\n   =\n   \\sqrt{\n   r^2+\\left(\\frac{R}{2}\\right)^2\n   +\n   rR\\cos\\theta\n   }.\n   \\]",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "More Problems",
+      "H$_2^+$ Molecule"
+    ]
+  },
+  {
+    "objectID": "docs/problems/h2-plus.html#lcao-and-h_2",
+    "href": "docs/problems/h2-plus.html#lcao-and-h_2",
+    "title": "H\\(_2^+\\) Molecule",
+    "section": "4.2 LCAO and \\(H_2^+\\)",
+    "text": "4.2 LCAO and \\(H_2^+\\)\nRemember that \\(\\chi_1\\) and \\(\\chi_2\\) can be any normalised three-dimensional wave functions.\nFor this model:\n\nuse the hydrogen wave functions above as \\(\\chi_1\\) and \\(\\chi_2\\);\nuse \\(c_1=c_2=1\\) for convenience;\nuse Python to numerically evaluate the overlap integral \\(S\\), the direct integrals \\(H_{11}\\) and \\(H_{22}\\), and the exchange integrals \\(H_{12}\\) and \\(H_{21}\\) as a function of \\(R\\);\nremember that in spherical polar coordinates,\n\\[\nd\\tau = r^2\\sin\\theta\\,dr\\,d\\theta\\,d\\phi.\n\\]\n\nFor \\(R=5\\), check that you obtain approximately\n\\[\n\\begin{array}{rr}\nS &= +0.096577, \\\\\nH_{11}=H_{22} &= -0.699946, \\\\\nH_{12}=H_{21} &= -0.088716, \\\\\nw &= -0.519203.\n\\end{array}\n\\]\n\nWhat is the significance of \\(w\\) being negative?\nTo calculate the total energy of the system, include the nucleus–nucleus repulsion,\n\\[\nV_{\\text{repulsion}}\n=\n\\frac{Q_1Q_2}{R}.\n\\]\nNow plot\n\\[\nw_{\\text{Total}}\n=\nw\n+\nV_{\\text{repulsion}}\n\\]\nas a function of \\(R\\).\nAnswer the following questions:\n\nIs the potential energy always negative?\nIs there a dip in the energy?\nAt what value of \\(R\\) does the dip occur?\nHow does this compare with the experimental value for \\(H_2^+\\)?\n\nYou should obtain a plot like the one below.\n\n\n\nTotal energy of \\(H_2^+\\) as a function of internuclear separation",
+    "crumbs": [
+      "Content",
+      "<strong>Additional Material</strong>",
+      "More Problems",
+      "H$_2^+$ Molecule"
+    ]
   },
   {
     "objectID": "docs/problems/roberts-gray-golgi_question.html",
